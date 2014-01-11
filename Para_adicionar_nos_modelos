@@ -1,0 +1,3 @@
+include Colunas
+include Mongoid::Document
+include Mongoid::Timestamps

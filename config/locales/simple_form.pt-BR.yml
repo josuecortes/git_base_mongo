@@ -1,0 +1,28 @@
+pt-BR:
+  simple_form:
+    "sim": 'Sim'
+    "não": 'Não'
+    required:
+      text: 'Requerido'
+      mark: '<em>*</em>'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      #html: '<abb>*sss</abbr>'
+    error_notification:
+      default_message: "Verifique os problemas abaixo:"
+    # Labels and hints examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    helpers:
+      titles:
+        new: "Novo"

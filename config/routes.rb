@@ -1,5 +1,30 @@
 BaseMongo::Application.routes.draw do
+  
+  resources :usuarios do
+
+    get :redefinir_senha
+
+    get :permissoes
+
+    get :adicionar_permissao
+
+    get :remover_permissao
+    
+  end 
+
+  get "capa/index"
+
+  get "capa/show"
+
+  get "capa/nao_ativo"
+
   devise_for :users
+
+  get "home/nao_autorizado"
+
+  get "home/index"
+
+  root :to => 'capa#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

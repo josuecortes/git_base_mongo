@@ -6,7 +6,11 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nome, :ativo, :mudar_senha
+
+  field :nome,               :type => String
+  field :ativo,              :type => Boolean, :default => true
+  field :mudar_senha,        :type => Boolean, :default => true
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -36,4 +40,14 @@ class User
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
+
+  #default_scope where(:ativo => true)
+
+  has_and_belongs_to_many :roles
+
+  #u.roles.include?r    #A PERGUNTA
+
+  ##SOLUÇÃO NAO VIAVEL MAS FUNCIONAL
+  
+
 end

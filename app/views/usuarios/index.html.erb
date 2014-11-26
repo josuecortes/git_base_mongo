@@ -1,0 +1,58 @@
+<div class="page-header">
+  <h1>Usuarios</h1>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Permissão</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @usuarios.each do |usuario| %>
+      <% if usuario.ativo == false %>
+        <tr class="error">
+      <% else %>
+        <tr>
+      <% end %>
+        <td><%= usuario.nome %></td>
+        <td><%= usuario.email %></td>
+        <td>
+          <% if can? :permissoes, usuario %>
+            <% usuario.roles.order_by([:nome]).each do |r| %>
+              <p><%= r.nome %></p>  
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if usuario.ativo == true %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_usuario_path(usuario), :class => 'btn btn-mini' %>
+            <% if can? :delete, usuario %>
+              <%= link_to "Desativar", usuario_path(usuario), :class=>"btn btn-danger btn-mini", method: :delete, data: { confirm: 'Você está certo disso?' } %> 
+            <% end %>
+            <% if can? :redefinir_senha, usuario %>
+              <%= link_to raw("<i class='icon-refresh'></i> Redefinir Senha"), usuario_redefinir_senha_path(usuario), :class=>"btn btn-danger btn-mini", data: { confirm: 'Você está certo disso?' } %>
+            <% end %>
+            <% if can? :permissoes, usuario %>
+              <%= link_to raw("<i class='icon-refresh'></i> Permissoes"), usuario_permissoes_url(usuario), :class=>'btn btn-mini btn-info' %>            
+            <% end %>
+          <% else %>            
+            <% if can? :delete, usuario %>
+              <%= link_to "Ativar", usuario_path(usuario), :class=>"btn btn-success btn-mini", method: :delete, data: { confirm: 'Você está certo disso?' } %> 
+            <% end %> 
+          <% end %>
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate(@usuarios) %>
+
+<% if can? :create, User %>
+  <%= link_to raw("<i class='icon-plus-sign'></i> Novo Usuario"), new_usuario_path, :class=>'btn btn-success' %>
+<% end %>

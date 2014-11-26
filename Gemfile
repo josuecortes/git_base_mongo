@@ -27,3 +27,6 @@ gem 'kaminari'
 gem 'scoped-search', :require => "scoped_search"
 gem "nested_form"
 gem "quiet_assets", ">= 1.0.1", :group => :development
+
+gem 'will_paginate', '~> 3.0'
+gem "will_paginate_mongoid"

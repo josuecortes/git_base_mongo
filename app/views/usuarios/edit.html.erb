@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1>Editar Usuario</h1>
+</div>
+
+<%= simple_form_for @usuario, :url=>usuario_path(@usuario), :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome, :input_html => {:class=>"input-xxlarge", :required=>true} %>
+  <%= f.input :email, :input_html => {:class=>"input-xxlarge", :required=>true} %>
+  
+  <% if current_user.id == @usuario.id %>	
+	  <%= f.input :mudar_senha, :as => :hidden, :input_html => {value: false} %>
+	  <%= f.input :password, :autocomplete => "off", :required => false, :label=>"Nova Senha" %>
+	  <%= f.input :password_confirmation, :required => false, :label=>"Confirmar Nova Senha" %>
+	  <%= f.input :current_password, :hint => "Você precisa confirmar sua senha atual para criar uma nova", :required => true, :label=>"Senha Atual" %> 
+	<% end %>  
+  
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                usuarios_path, :class => 'btn' %>
+  </div>
+<% end %>

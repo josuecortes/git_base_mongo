@@ -1,17 +1,20 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-signin' }) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
-  </div>
-
+	<h2 class="form-signin-heading">Cadastro</h2>
+  <br/>
+  <%= f.text_field :email, :class=>"input-xxlarge", :required=>true, :autofocus=>true, :placeholder=>"E-mail" %>
+  <br/>
+  <%= f.password_field :password, :class=>"input-large", :required=>true, :placeholder=>"Senha" %>
+  <br/>
+  <%= f.password_field :password_confirmation, :class=>"input-large", :required=>true, :placeholder=>"Confirmar Senha" %>
+  <br/>
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  	<%= f.button :submit, "Cadastrar",:class => 'btn btn-large btn-primary' %>
   </div>
+  <%= link_to "Inicio", root_url %>
+  <br/>
+  <%= render "devise/shared/links" %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+

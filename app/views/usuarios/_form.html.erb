@@ -1,0 +1,11 @@
+<%= simple_form_for @usuario, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :nome %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                motoristas_path, :class => 'btn' %>
+  </div>
+<% end %>

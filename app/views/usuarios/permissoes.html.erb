@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h1>Permissões</h1>
+</div>
+<h4>Permissões do Usuario</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @roles.each do |r| %>
+      <tr>
+        <td><%= r.nome %></td>
+        <td>
+          <%= link_to raw("<i class='icon-refresh'></i> Remover"), usuario_remover_permissao_url(@usuario, :role_id=>r.id), :class=>'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+	  <% end %>
+  </tbody>
+</table>
+
+<h4>Adicionar Permissão</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @roles_fora.each do |r| %>
+      
+	      <tr>
+	        <td><%= r.nome %></td>
+	        <td>
+	                     
+	          <%= link_to raw("<i class='icon-plus'></i> Adicionar"), usuario_adicionar_permissao_url(@usuario, :role_id=>r.id), :class=>'btn btn-mini btn-success' %>
+	          
+	        </td>
+	      </tr>
+	   
+    <% end %>
+  </tbody>
+</table>
+
+<div class="form-actions">
+
+	<%= link_to raw("<i class='icon-arrow-left'></i> Voltar"), usuarios_path, :class=>'btn btn-default' %> 
+
+</div>
+
+

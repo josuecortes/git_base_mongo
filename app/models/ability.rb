@@ -1,7 +1,25 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user)
+    
+    @MASTER = Role.where(:sigla=>"MASTER").first
+    
+    #u.roles.include?r    #A PERGUNTA
+    if user.roles.include?@MASTER
+      can :manage, :all
+    end
+    
+    if user
+      can [:read,:update], User, {:id=>user.id}
+    end
+
+  end
+
+end
+
+
+
+#def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -28,5 +46,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
-end
+  #end

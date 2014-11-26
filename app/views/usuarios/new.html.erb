@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>Novo Usuario</h1>
+</div>
+
+<%= simple_form_for @usuario, :url=>usuarios_path, :html => { :class => 'form-horizontal' } do |f| %>
+	<%= f.input :nome, :input_html => {:class=>"input-xxlarge", :required=>true} %>
+  <%= f.input :email, :input_html => {:class=>"input-xxlarge", :required=>true} %>
+
+  <p class="text-error">Atenção: A senha gerada sera: "mudarsenha" ... tudo em minusculo e sem as aspas</p>
+  <p class="text-info">Apos o primeiro login o usuario sera redirecionado e solicitado a mudar sua senha. <br/>Apos mudar sua senha o usuario tera que efetuar novamente o login.</p>
+
+  <%= f.input :password, :as => :hidden, :input_html => {value: "mudarsenha"} %>
+  <%= f.input :password_confirmation, :as => :hidden, :input_html => {value: "mudarsenha"} %>
+  <div class="form-actions">
+    <%= f.button :submit, "Salvar", :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                usuarios_path, :class => 'btn' %>
+  </div>
+<% end %>
